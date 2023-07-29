@@ -1,5 +1,6 @@
 package com.plcoding.ktorandroidchat.data.remote
 
+import com.plcoding.ktorandroidchat.BuildConfig
 import com.plcoding.ktorandroidchat.domain.model.Message
 import com.plcoding.ktorandroidchat.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +18,7 @@ interface ChatSocketService {
     suspend fun closeSession()
 
     companion object {
-        const val BASE_URL = "ws://192.168.29.199:8082"
+        const val BASE_URL = "ws://${BuildConfig.SERVER_IP}:8082"
     }
 
     sealed class Endpoints(val url: String) {

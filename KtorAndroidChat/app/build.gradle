@@ -6,6 +6,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
+def propertiesFile = project.rootProject.file('server.properties')
 
 android {
     compileSdk 33
@@ -24,9 +25,26 @@ android {
     }
 
     buildTypes {
+
+        Properties properties = new Properties()
+        if (propertiesFile.exists()) {
+            properties.load(propertiesFile.newDataInputStream())
+        } else {
+            throw IllegalStateException("File not found: server.properties")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_IP", properties.getProperty("SERVER_IP_ADDRESS", "")
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_IP", properties.getProperty("SERVER_IP_ADDRESS", "")
         }
     }
     compileOptions {
