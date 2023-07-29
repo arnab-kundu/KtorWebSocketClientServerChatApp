@@ -16,7 +16,8 @@
             android:name="com.plcoding.ktorandroidchat.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.KtorAndroidChat.NoActionBar">
+            android:theme="@style/Theme.KtorAndroidChat.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
