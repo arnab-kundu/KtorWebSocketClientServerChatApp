@@ -1,0 +1,2 @@
+Create new user
+ws://localhost:8082/chat-socket?username=Arnab
